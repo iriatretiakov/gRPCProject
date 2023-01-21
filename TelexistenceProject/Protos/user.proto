@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option csharp_namespace = "TelexistenceProject";
+
+package greet;
+
+service UsersData {
+	rpc GetUser (UserIdRequest) returns (UserReply);
+	rpc GetUsers (Ping) returns (UsersReply);
+	rpc DeleteUser (UserIdRequest) returns (UsersReply);
+	rpc UpdateUser (UserModelRequest) returns (UsersReply);
+	rpc CreateUser (UserModelRequest) returns (UserReply);
+}
+
+message Ping {}
+
+message UserIdRequest {
+	string userId = 1;
+}
+
+message UserModelRequest {
+	optional string userId = 1;
+	string firstName = 2;
+	string secondName = 3;
+}
+
+message UserReply {
+	string userId = 1;
+	string firstName = 2;
+	string secondName = 3;
+}
+
+message UsersReply {
+  repeated UserReply users = 1;
+}
+
