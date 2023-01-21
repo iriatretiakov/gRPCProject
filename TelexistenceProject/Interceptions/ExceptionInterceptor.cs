@@ -1,6 +1,5 @@
 ﻿using Grpc.Core;
 using Grpc.Core.Interceptors;
-using TelexistenceProject.Services;
 
 namespace TelexistenceProject.Interceptions
 {
