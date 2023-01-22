@@ -12,11 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.WebHost.ConfigureKestrel(options =>
-{
-    // gRPC
-    options.ListenAnyIP(5001, o => o.Protocols = HttpProtocols.Http2);
-});
 
 builder.Services.AddGrpc(options =>
 {

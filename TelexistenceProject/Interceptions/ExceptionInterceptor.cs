@@ -14,7 +14,7 @@ namespace TelexistenceProject.Interceptions
         public override async Task<TResponse> UnaryServerHandler<TRequest, TResponse>(TRequest request, ServerCallContext context, UnaryServerMethod<TRequest, TResponse> continuation)
         {
             try
-            {
+            {   _logger.LogInformation(DateTime.UtcNow.ToString() + " " + context.Method);
                 return await continuation(request, context);
             }
             catch (Exception ex)
