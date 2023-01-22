@@ -1,5 +1,6 @@
 using DAL.DataAccess;
 using DAL.DataAccesss;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using TelexistenceProject.DALServices;
 using TelexistenceProject.Interceptions;
 using TelexistenceProject.Services;
@@ -11,14 +12,26 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    // gRPC
+    options.ListenAnyIP(5001, o => o.Protocols = HttpProtocols.Http2);
+});
+
 builder.Services.AddGrpc(options =>
 {
     options.Interceptors.Add<ExceptionInterceptor>();
 }); 
 
+
 builder.Services.AddScoped<IUserDataAccess, UserDataAccess>();
 builder.Services.AddScoped<IUserDataService, UserDataService>();
 var app = builder.Build();
+
+if (app.Environment.IsProduction())
+{
+    app.UseHttpsRedirection();
+}
 
 // Configure the HTTP request pipeline.
 app.MapGrpcService<UserService>();

@@ -8,7 +8,7 @@ namespace GrpcClient
     {
         static async Task Main(string[] args)
         {
-            using (var chanell = GrpcChannel.ForAddress("http://localhost:5000"))
+            using (var chanell = GrpcChannel.ForAddress("https://localhost:5001"))
             {
                 var client = new UsersDataClient(chanell);
                 Menu();
