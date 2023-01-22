@@ -8,7 +8,7 @@ namespace GrpcClient
     {
         static async Task Main(string[] args)
         {
-            using (var chanell = GrpcChannel.ForAddress("https://localhost:7020"))
+            using (var chanell = GrpcChannel.ForAddress("http://localhost:5000"))
             {
                 var client = new UsersDataClient(chanell);
                 Menu();
@@ -71,7 +71,8 @@ namespace GrpcClient
                 $"user\n" +
                 $"delete\n" +
                 $"create\n" +
-                $"update\n");
+                $"update\n"+
+                $"exit");
         }
 
         static async Task GetUserById (UsersDataClient client, string userId)
