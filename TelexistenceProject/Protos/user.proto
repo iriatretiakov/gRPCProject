@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option csharp_namespace = "TelexistenceProject";
 
-package greet;
+package users;
 
 service UsersData {
 	rpc GetUser (UserIdRequest) returns (UserReply);
